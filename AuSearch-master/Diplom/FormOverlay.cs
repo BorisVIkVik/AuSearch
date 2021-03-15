@@ -125,7 +125,11 @@ namespace BW.Diplom
         {
             Size bSize = this.ClientSize;
             Rectangle bRect = (bSize.Height > bSize.Width) ? new Rectangle(0, (bSize.Height - bSize.Width) / 2, bSize.Width, bSize.Width) : new Rectangle((bSize.Width - bSize.Height) / 2, 0, bSize.Height, bSize.Height);
-                
+            Rectangle bRect2 = bRect;
+            bRect2.Height -= 30;
+            bRect2.Width -= 30;
+            bRect2.Location = new Point(bRect.Location.X + 15, bRect.Location.Y + 15);
+
             using (Pen bPen = new Pen(Color.FromArgb(MainForm.settings.Colour), 5))
             {
                 
@@ -142,11 +146,27 @@ namespace BW.Diplom
                     angle = 0;
 
                 g.DrawEllipse(bPen, bRect);
+                g.DrawEllipse(bPen, bRect2);
                 Point center = new Point(bRect.X + bRect.Width / 2, bRect.Y + bRect.Height / 2);
                 g.TranslateTransform(center.X, center.Y);
                 g.RotateTransform(angle);
                 g.TranslateTransform(-center.X, -center.Y);
                 g.DrawLine(bPen, center, new Point(center.X, center.Y - bRect.Height / 2));
+                Rectangle bRect3 = new Rectangle(new Point(center.X - 10, center.Y - bRect.Height / 2), new Size(20, 15));
+                Brush bruh = System.Drawing.Brushes.White;
+                g.DrawEllipse(bPen, bRect3);
+                g.FillEllipse(bruh, bRect3);
+                /*
+                 * Point center = new Point(bRect.X + bRect.Width / 2, bRect.Y + bRect.Height / 2);
+                g.DrawEllipse(bPen, 10, 0, this.Size.Width -30, this.Size.Height - 50);
+                g.TranslateTransform(center.X, center.Y);
+                g.RotateTransform(angle);
+                g.TranslateTransform(-center.X, -center.Y);
+                int x1 = Convert.ToInt32(this.Size.Height * this.Size.Width / 40 / Math.Sqrt(this.Size.Height * this.Size.Height / 400 + Math.Atan(angle) * Math.Atan(angle) * this.Size.Width * this.Size.Width / 400));
+                int y1 = Convert.ToInt32(Math.Atan(angle) * x1);
+                int dist = Convert.ToInt32(Math.Sqrt(x1 * x1 + y1 * y1));
+                g.DrawLine(bPen, center, new Point(center.X, dist));
+                 */
             }
             //using (Pen bPen = new Pen(Brushes.IndianRed, 5))
             //{
@@ -182,10 +202,10 @@ namespace BW.Diplom
         {
             volL = mmDevice.AudioMeterInformation.PeakValues[0];
             if (volL < 0.1) volL = 0;
-            if (volL > 0.9) volL = 0;
+            //if (volL > 0.9) volL = 0;
             volR = mmDevice.AudioMeterInformation.PeakValues[1];
             if (volR < 0.1) volR = 0;
-            if (volR > 0.9) volR = 0;
+            //if (volR > 0.9) volR = 0;
             this.Invalidate();
         }
     }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -52,6 +53,11 @@ namespace BW.Diplom
         {
             parentForm.myColor = myColor;
             parentForm.pictureBox2_Click(null, null);    
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Process.Start("sound_project_api.lnk");
         }
     }
 }

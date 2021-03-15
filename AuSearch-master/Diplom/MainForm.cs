@@ -33,14 +33,22 @@ namespace BW.Diplom
             colorDialog1.Color = this.BackColor;
             string seigeImgPath = Path.Combine(Application.StartupPath, "seige.jpg");
             pictureBox1.Image = Image.FromFile(seigeImgPath);
-            string setImgPath = Path.Combine(Application.StartupPath, "settings.png");
+            string setImgPath = Path.Combine(Application.StartupPath, "settings1.png");
             pictureBox2.Image = Image.FromFile(setImgPath);
-            string globalImgPath = Path.Combine(Application.StartupPath, "global.png");
+            string globalImgPath = Path.Combine(Application.StartupPath, "language.png");
             pictureBox4.Image = Image.FromFile(globalImgPath);
-            string bugImgPath = Path.Combine(Application.StartupPath, "bug.png");
+            string bugImgPath = Path.Combine(Application.StartupPath, "bag1.png");
             pictureBox6.Image = Image.FromFile(bugImgPath);
-            string crossImgPath = Path.Combine(Application.StartupPath, "cross.png");
+            string crossImgPath = Path.Combine(Application.StartupPath, "cross1.png");
             pictureBox7.Image = Image.FromFile(crossImgPath);
+            string circleImgPath = Path.Combine(Application.StartupPath, "colzo.png");
+            pictureBox8.Image = Image.FromFile(circleImgPath);
+            string lineImgPath = Path.Combine(Application.StartupPath, "line.png");
+            pictureBox9.Image = Image.FromFile(lineImgPath);
+            string sphereImgPath = Path.Combine(Application.StartupPath, "sphere.png");
+            pictureBox10.Image = Image.FromFile(sphereImgPath);
+            string geomaImgPath = Path.Combine(Application.StartupPath, "geoma.png");
+            pictureBox11.Image = Image.FromFile(geomaImgPath);
             //pictureBox2.Location = new Point(752, 387);
             //pictureBox2.Size = new Size(50,50);
         }
@@ -262,14 +270,42 @@ namespace BW.Diplom
             {
                 string seigeImgPath = Path.Combine(Application.StartupPath, "seige.jpg");
                 pictureBox1.Image = Image.FromFile(seigeImgPath);
-                label2.Text = "Tom Clancy’s Rainbow Six Siege — тактический \nшутер от первого лица, разработанный Ubisoft";
+                label2.Text = "Tom Clancy’s Rainbow Six Siege — тактический \nшутер от первого лица, разработанный Ubisoft.";
             }
             else
             {
                 string csgoImgPath = Path.Combine(Application.StartupPath, "csgo.jpg");
                 pictureBox1.Image = Image.FromFile(csgoImgPath);
-                label2.Text = "         CSGO - помойка";
+                label2.Text = "Counter-Strike: Global Offensive  — тактический \nшутер от первого лица, разработанный Valve.";
             }
+        }
+
+        private void checkBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+            checkBox4.Checked = false;
+            checkBox2.Checked = false;
+            checkBox3.Checked = false;
+        }
+
+        private void checkBox2_MouseClick(object sender, MouseEventArgs e)
+        {
+            checkBox1.Checked = false;
+            checkBox4.Checked = false;
+            checkBox3.Checked = false;
+        }
+
+        private void checkBox3_MouseClick(object sender, MouseEventArgs e)
+        {
+            checkBox1.Checked = false;
+            checkBox2.Checked = false;
+            checkBox4.Checked = false;
+        }
+
+        private void checkBox4_MouseClick(object sender, MouseEventArgs e)
+        {
+            checkBox1.Checked = false;
+            checkBox2.Checked = false;
+            checkBox3.Checked = false;
         }
 
         private void panel1_MouseUp(object sender, MouseEventArgs e)
