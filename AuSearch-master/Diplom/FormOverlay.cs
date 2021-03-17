@@ -130,7 +130,7 @@ namespace BW.Diplom
             bRect2.Width -= 30;
             bRect2.Location = new Point(bRect.Location.X + 15, bRect.Location.Y + 15);
 
-            using (Pen bPen = new Pen(Color.FromArgb(MainForm.settings.Colour), 5))
+            using (Pen bPen = new Pen(Color.FromArgb(MainForm.settings.Colour), 20))
             {
                 
                 volume = (int)(volR * 100) - (int)(volL * 100);
@@ -145,17 +145,44 @@ namespace BW.Diplom
                 if (volume == 0) 
                     angle = 0;
 
-                g.DrawEllipse(bPen, bRect);
-                g.DrawEllipse(bPen, bRect2);
-                Point center = new Point(bRect.X + bRect.Width / 2, bRect.Y + bRect.Height / 2);
-                g.TranslateTransform(center.X, center.Y);
-                g.RotateTransform(angle);
-                g.TranslateTransform(-center.X, -center.Y);
-                g.DrawLine(bPen, center, new Point(center.X, center.Y - bRect.Height / 2));
-                Rectangle bRect3 = new Rectangle(new Point(center.X - 10, center.Y - bRect.Height / 2), new Size(20, 15));
-                Brush bruh = System.Drawing.Brushes.White;
-                g.DrawEllipse(bPen, bRect3);
-                g.FillEllipse(bruh, bRect3);
+                int a = this.Width / 20;
+                int b = this.Height / 20;
+                double k = (angle-90)/57.3;
+               
+                g.DrawEllipse(bPen, 0, 0, this.Width - 20, this.Height - 40);
+
+                double x = 10 * a * b / Math.Sqrt(b * b + Math.Tan(k) * Math.Tan(k) * a * a);
+                if (k % 3.14 >= 1.57 && k % 3.14 <= 3.14)
+                {
+                    x = -x;
+                }
+                double y = Math.Tan(k) * x;
+                if ((int)(k / 3.14) % 2 != 0)
+                {
+                    x = -x;
+                    y = -y;
+                }
+
+                bPen.Width = 10;
+                Color c = Color.FromArgb(MainForm.settings.Colour);
+                c = Color.FromArgb(c.A, 0xFF - c.R, 0xFF - c.G, 0xFF - c.B);
+                bPen.Color = c;
+
+                g.DrawLine(bPen, this.Width / 2 - 10, this.Height / 2 - 20, this.Width / 2 - 10 + (int)x, this.Height / 2 - 20 + (int)y);
+                bPen.Color = Color.Transparent;
+                //g.
+                //g.FillEllipse(Brushes.Red, 20, 20, this.Width - 30, this.Height - 50);
+                //g.DrawEllipse(bPen, bRect);
+                //g.DrawEllipse(bPen, bRect2);
+                //Point center = new Point(bRect.X + bRect.Width / 2, bRect.Y + bRect.Height / 2);
+                //g.TranslateTransform(center.X, center.Y);
+                //g.RotateTransform(angle);
+                //g.TranslateTransform(-center.X, -center.Y);
+                //g.DrawLine(bPen, center, new Point(center.X, center.Y - bRect.Height / 2));
+                //Rectangle bRect3 = new Rectangle(new Point(center.X - 10, center.Y - bRect.Height / 2), new Size(20, 15));
+                //Brush bruh = System.Drawing.Brushes.White;
+                //g.DrawEllipse(bPen, bRect3);
+                //g.FillEllipse(bruh, bRect3);
                 /*
                  * Point center = new Point(bRect.X + bRect.Width / 2, bRect.Y + bRect.Height / 2);
                 g.DrawEllipse(bPen, 10, 0, this.Size.Width -30, this.Size.Height - 50);
@@ -207,6 +234,17 @@ namespace BW.Diplom
             if (volR < 0.1) volR = 0;
             //if (volR > 0.9) volR = 0;
             this.Invalidate();
+        }
+
+        //public void changeDev(string dev)
+        //{
+        //    MMDeviceEnumerator enumerator = new MMDeviceEnumerator();
+        //    mmDevice.AudioEndpointVolume.
+        //    mmDevice = enumerator.GetDevice(dev);
+        //}
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+
         }
     }
 }

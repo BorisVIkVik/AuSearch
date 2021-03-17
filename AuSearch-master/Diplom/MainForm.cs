@@ -313,6 +313,13 @@ namespace BW.Diplom
             Dra = false;
         }
 
+        public void changeDevice(string dev)
+        {
+            if (frm != null)
+            {
+                //frm.changeDev(dev);
+            }
+        }
 
 
         //private void audioDevsList_SelectedIndexChanged(object sender, EventArgs e)

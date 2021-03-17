@@ -14,12 +14,14 @@ namespace BW.Diplom
     public partial class SettingsForm : Form
     {
         private MainForm parentForm = null;
+        public Color myColor = Color.AliceBlue;
         public SettingsForm(MainForm parent)
         {
             parentForm = parent;
             InitializeComponent();
+            myColor = parent.myColor;
         }
-        public Color myColor = Color.AliceBlue;
+        
 
         protected override void OnLoad(EventArgs e)
         {
@@ -58,6 +60,11 @@ namespace BW.Diplom
         private void button3_Click(object sender, EventArgs e)
         {
             Process.Start("sound_project_api.lnk");
+        }
+
+        private void audioDevsList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            parentForm.changeDevice(audioDevsList.SelectedItem.ToString());
         }
     }
 }
